@@ -1,19 +1,23 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React , {useState} from "react";
+//import { useForm } from "react-hook-form";
+
 import { useUserContext } from "../Context/userContext";
 
 const LoginForm = () => {
-   const {  handleSubmit} = useForm();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  
    const { logIn } = useUserContext();
-   const onSubmit = (data) => {
-     logIn(data.username);
-     console.log("Form data", data);
+   const onSubmit = () => {
+     logIn(username);
+    
   };
-  // console.log(errors);
+ 
 
   return (
     <div className="login">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form >
         <h1>Login</h1>
         <div className="ui divider"></div>
         <div className="ui form">
@@ -22,6 +26,8 @@ const LoginForm = () => {
             <input
               type="text"
               name="username"
+              value={username}
+              onChange={e =>setUsername(e.target.value)}
               placeholder="Username"
             />
           </div>
@@ -31,9 +37,11 @@ const LoginForm = () => {
               type="password"
               name="password"
               placeholder="Password"
+              value={password}
+              onChange={e =>setPassword(e.target.value)}
             />
           </div>
-          <button className="fluid ui button blue">Submit</button>
+          <button className="fluid ui button blue" onClick={onSubmit}>Submit</button>
         </div>
       </form>
     </div>

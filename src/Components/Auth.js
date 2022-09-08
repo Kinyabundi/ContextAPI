@@ -4,12 +4,15 @@ import Home from "./Home";
 import { useUserContext } from '../Context/userContext';
 
 const Auth = () => {
+
     const {user} = useUserContext();
+    console.log(user)
   return (
     <>
         {user.isGuestUser ? <LoginForm /> : <Home/>}
     </>
   )
 }
+
 
 export default Auth
